@@ -17,8 +17,18 @@
 - swagger-ui-express
 
 ## Routes
-| Attempt |  #1   |  #2   |
+| Route |  Method   |  Description   |
 | :-----: | :---: | :---: |
+| users/register |  POST  |  Allows users to register in the database  |
+| users/login |  POST  |  Allows users to log in  |
+| Seconds |  301  |  283  |
+| Seconds |  301  |  283  |
+| Seconds |  301  |  283  |
+| Seconds |  301  |  283  |
+| Seconds |  301  |  283  |
+| Seconds |  301  |  283  |
+| Seconds |  301  |  283  |
+| Seconds |  301  |  283  |
 | Seconds |  301  |  283  |
 
 ## Resources
