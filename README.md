@@ -1,3 +1,26 @@
+# E-Commerce REST API
+
+## Technologies
+- Postgres
+- Express.js
+- Node
+
+## Dependencies
+- Express
+- Express Flash
+- Passport
+- Passport-local
+- bcrypt
+- pg
+- ejs
+- swagger-jsdoc
+- swagger-ui-express
+
+## Routes
+| Attempt |  #1   |  #2   |
+| :-----: | :---: | :---: |
+| Seconds |  301  |  283  |
+
 ## Resources
 - Routing setup was learned from here: https://www.youtube.com/watch?v=DihOP19LQdg
   - Set up server.js, routes.js, controller.js, queries.js, db.js
@@ -9,7 +32,6 @@
   - Set up 'users' table in Postgres
   - Set up user registration
 
-
-
-
-I believe that the .env file, the dbConfig file are not being used! Try removing their code and see if everything still works.
+## Testing
+- Server side testing and database management was done with Postbird
+- Requests were tested with Postman
