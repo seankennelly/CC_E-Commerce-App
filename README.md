@@ -1,5 +1,8 @@
 # E-Commerce REST API
 
+## Run
+To run the project enter either **`node server.js`** or **`./node_modules/.bin/nodemon server.js`** to run with Nodemon.
+
 ## Description
 The brief was this project was to build an E-Commerce REST API that allows users to perform various CRUD operations. I was tasked with this as part of the Full Stack Codecademy course.
 
@@ -19,6 +22,7 @@ The brief was this project was to build an E-Commerce REST API that allows users
 ## Technologies
 - Postgres
 - Express.js
+- Express Passport
 - Node
 
 ## Dependencies
@@ -66,3 +70,6 @@ As this was my first project that used a combination of Postgres, Express, Expre
 ### Testing
 - Server side testing and database management was done with Postbird
 - Postman was used for testing our API routes, request body(s) and responses.
+
+## Project Conclusion
+This project was an excellent learning opportunity, bringing together various technologies that I had not yet learned to fully implement. I also saw how these technologies fit together with each other. 
