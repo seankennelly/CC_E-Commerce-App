@@ -51,6 +51,9 @@ The brief was this project was to build an E-Commerce REST API that allows users
 | /orders/{userId}/{orderId} |  GET  |  Returns single order by ID  |
 | /orders/products/{orderId} |  GET  |  Returns order with product details  |
 
+## OpenAPI / Swagger
+Once the program is running, navigate to **`/api-docs`** to view the Swagger documentation and test the routes.
+
 ## ERD Schema
 ![ERD Schema Diagram](./resources/ERD.png)
 
@@ -69,7 +72,8 @@ As this was my first project that used a combination of Postgres, Express, Expre
 
 ### Testing
 - Server side testing and database management was done with Postbird
-- Postman was used for testing our API routes, request body(s) and responses.
+- Postman was used for testing our API routes, request body(s) and responses
+- Testing can be completed by the user with the Swagger documentation
 
 ## Project Conclusion
 This project was an excellent learning opportunity, bringing together various technologies that I had not yet learned to fully implement. I also saw how these technologies fit together with each other. 
