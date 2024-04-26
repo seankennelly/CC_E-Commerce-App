@@ -6,6 +6,7 @@ const util = require('../util/util');
 
 const router = Router();
 
+
 router.get('/', (req, res) => {
   res.render('index')
 });
@@ -44,6 +45,7 @@ router.post('/login', passport.authenticate('local', {
   failureFlash: true
 }));
 // Delete user
-router.get('/deleteUser', controller.deleteUser)
+// Should this be router.delete? It works like this!
+router.get('/deleteuser', controller.deleteUser);
 
 module.exports = router;

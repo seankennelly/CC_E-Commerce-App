@@ -3,8 +3,8 @@ const controller = require('../controllers/order_controller');
 
 const router = Router();
 
-router.get('/:userId', controller.getOrders);
+router.get('/products/:orderId', controller.getOrderProducts);
+router.get('/:userId', controller.getUserOrders);
 router.get('/:userId/:orderId', controller.getOrderById);
-router.get('/:userId/:orderId/products', controller.getOrderProducts);
 
 module.exports = router;

@@ -50,39 +50,6 @@ const deleteUser = (req, res) => {
   })
 };
 
-// Middleware to ensure that when user is logged in or out they see appropriate pages
-// const checkAuthenticated = (req, res, next) => {
-//   if (req.isAuthenticated()) {
-//     return res.redirect('dashboard');
-//   }
-//   next();
-// };
-// const checkNotAuthenticated = (req, res, next) => {
-//   if (req.isAuthenticated()) {
-//     return next();
-//   }
-//   res.redirect('login');
-// };
-
-
-// const updateCustomer = (req, res) => {
-//   const id = parseInt(req.params.id);
-//   const { first_name, last_name, email, telephone, username, password, address_id } = req.body;
-
-//   pool.query(queries.getCustomerById, [id], (error, results) => {
-//     const noCustomerFound = !results.rows.length;
-//     if (noCustomerFound) {
-//       res.send('Customer does not exist, could not update');
-//     }
-
-//     pool.query(queries.updateCustomer, [id, first_name, last_name, email, telephone, username, password, address_id], (error, results) => {
-//       if (error) throw error;
-//       res.status(200).send('Customer updated successfully')
-//     })
-//   });
-// };
-
-
 module.exports = {
   registerUser,
   deleteUser

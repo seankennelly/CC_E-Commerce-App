@@ -22,7 +22,7 @@ const createCart = (req, res) => {
     }) 
 };
 
-// To CARTS_PRODUCTS table
+// To CARTS_PRODUCTS table 
 const addProductToCart = (req, res) => {
   const cartId = parseInt(req.body.cartId);
   const productId = parseInt(req.body.productId);
@@ -39,7 +39,7 @@ const removeProductFromCart = (req, res) => {
   pool.query(queries.removeProductFromCart, [cartId, productId], (error, results) => {
     if (error) throw error;
     res.status(204).send('Product deleted from cart');
-  })
+  }) 
 };
 
 const updateProductQuantity = (req, res) => {
@@ -60,7 +60,3 @@ module.exports = {
   removeProductFromCart,
   updateProductQuantity
 };
-
-/*
-router.delete('/:userid', controller.deleteCart);
-*/

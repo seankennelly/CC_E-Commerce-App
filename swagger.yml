@@ -1,0 +1,455 @@
+openapi: 3.0.3
+info:
+  title: E-Commerce API
+  description: A Codecademy project that makes use of Node, Express and Postgres
+  version: 1.0.0
+servers:
+  - url: http://localhost:3000
+tags:
+  - name: users
+    description: User related routes
+  - name: products
+    description: Product related routes
+  - name: cart
+    description: Cart related routes
+  - name: orders
+    description: Order related routes
+paths:
+  /users/register:
+    post:
+      tags:
+        - users
+      summary: Register a user
+      description: Register a user
+      operationId: register
+      requestBody:
+        description: Register a user
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Users'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Users'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Users'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Users'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Users'
+  /users/login:
+    post:
+      tags:
+        - users
+      summary: Login user
+      description: Login user
+      operationId: login
+      parameters:
+        - name: email
+          in: query
+          description: The email for login
+          required: true
+          schema:
+            type: string
+        - name: password
+          in: query
+          description: The password for login in clear text
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Users'          
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Users'
+        '400':
+          description: Invalid status value
+  /products/:
+    get:
+      tags:
+        - products
+      summary: Get all products
+      description: Get all products
+      operationId: getproducts
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Products'          
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Products'
+  /products/{productId}:
+    get:
+      tags:
+        - products
+      summary: Find product by ID
+      description: Find product by ID
+      operationId: getProductById
+      parameters:
+        - name: productId
+          in: path
+          description: ID of product to return
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Products'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Products'
+  /cart:
+    post:
+      tags:
+        - cart
+      summary: Add product to cart
+      description: Add product to cart
+      operationId: addProductToCart
+      requestBody:
+        description: Register a user
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Carts_Products'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Carts_Products'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Carts_Products'
+        required: true
+      responses:
+        '201':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Carts_Products'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Carts_Products'
+    delete:
+      tags:
+        - cart
+      summary: Delete cart item by ID
+      description: Delete cart item by ID
+      operationId: removeProductFromCart
+      requestBody:
+        description: Delete cart item by ID
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Carts_Products'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Carts_Products'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Carts_Products'
+        required: true
+      responses:
+        '204':
+          description: Product deleted from cart
+  /cart/{userId}:
+    get:
+      tags:
+        - cart
+      summary: Returns user associated with cart
+      description: Returns user associated with cart
+      operationId: getCartUserById
+      parameters:
+        - name: userId
+          in: path
+          description: User id associated with cart
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties:
+                  type: integer
+                  format: int32
+        '400':
+          description: cart empty
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties:
+                  type: integer
+                  format: int32
+    post:
+      tags:
+        - cart
+      summary: Create cart
+      description: Create cart
+      operationId: createCart
+      parameters:
+        - name: id
+          in: path
+          description: User id associated with cart
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/cart'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/cart'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/cart'
+      responses:
+        '201':
+          description: Cart created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/cart'
+  /orders/{userId}:
+    get:
+      tags:
+        - orders
+      summary: Returns a user's orders
+      description: Returns a user's orders
+      operationId: getUserOrders
+      parameters:
+        - name: userId
+          in: path
+          description: User id associated with orders
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Orders returned
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties:
+                  type: integer
+                  format: int32
+  /orders/{userId}/{orderId}}:
+    get:
+      tags:
+        - orders
+      summary: Returns one order by id
+      description: Returns one order by id
+      operationId: getOrderById
+      parameters:
+        - name: userId
+          in: path
+          description: User id associated with order
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: orderId
+          in: path
+          description: Order id associated with order
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Orders returned
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties:
+                  type: integer
+                  format: int32
+  /orders/products/{orderId}:
+    get:
+      tags:
+        - orders
+      summary: Returns order with product details
+      description: Returns order with product details
+      operationId: getOrderProducts
+      parameters:
+        - name: orderId
+          in: path
+          description: Order id associated with order
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Orders returned
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties:
+                  type: integer
+                  format: int32
+components:
+  schemas:
+    Users:
+      type: object
+      properties:
+        name:
+          type: string
+          example: "Woodpecker"
+        email:
+          type: string
+          example: "woodpecker@gmail.com"
+        password:
+          type: string
+          example: laughter
+        password2:
+          type: string
+          example: laughter
+      xml:
+        name: users
+    Products:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 10
+        name:
+          type: string
+          example: Hiking boots
+        description: 
+          type: string
+          example: "A pair of waterproof boots"
+        num_in_stock:
+          type: string
+          example: 10
+        price:
+          type: number
+          example: 90.00
+      xml:
+        name: products
+    cart:
+      type: object
+      xml:
+        name: cart
+    Carts_Products:
+      type: object
+      properties:
+        cartId:
+          type: integer
+          format: int64
+          example: 1
+        productId:
+          type: integer
+          example: 8
+        quantity:
+          type: integer
+          example: 1
+      xml:
+        name: category
+    Orders:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 10
+        user_id:
+          type: integer
+          example: 1
+        status:
+          type: string
+          example: OK
+        time:
+          type: string
+          example: 2020-10-05 14:01:10
+        total_price:
+          type: number
+          example: 200.00
+      xml:
+        name: orders
+    Orders_Products:
+      type: object
+      properties:
+        order_id:
+          type: integer
+          format: int64
+        product_id:
+          type: integer
+        quantity:
+          type: integer
+        price: 
+          type: number
+      xml:
+        name: orders_products
+  requestBodies:
+    Products:
+      description: Products object that needs to be added to the store
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Products'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/Products'
+    UserArray:
+      description: List of user object
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/Users'
+  securitySchemes:
+    petstore_auth:
+      type: oauth2
+      flows:
+        implicit:
+          authorizationUrl: https://petstore3.swagger.io/oauth/authorize
+          scopes:
+            write:pets: modify pets in your account
+            read:pets: read your pets
+    api_key:
+      type: apiKey
+      name: api_key
+      in: header
+

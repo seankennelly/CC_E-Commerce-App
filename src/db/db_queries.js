@@ -13,9 +13,9 @@ const addProductToCart = 'INSERT INTO carts_products (cart_id, product_id, quant
 const removeProductFromCart = 'DELETE FROM carts_products WHERE cart_id = $1 AND product_id = $2';
 const updateProductQuantity = 'UPDATE carts_products SET quantity = $3 WHERE cart_id = $1 AND product_id = $2';
 // Orders
-const getOrders = 'SELECT * FROM orders';
-const getOrderById = 'SELECT * FROM orders WHERE user_id = $1 AND order_id = $2';
-const getOrderProducts = 'SELECT * FROM orders_products WHERE order_id = $1';
+const getUserOrders = 'SELECT * FROM orders WHERE user_id = $1';
+const getOrderById = 'SELECT * FROM orders WHERE user_id = $1 AND id = $2';
+const getOrderProducts = 'SELECT order_id, product_id, name FROM orders_products LEFT JOIN products ON orders_products.product_id = products.id LEFT JOIN orders ON orders_products.order_id = orders.id WHERE order_id = $1';
 
 
 
@@ -31,7 +31,8 @@ module.exports = {
   addProductToCart,
   removeProductFromCart,
   updateProductQuantity,
-  getOrders,
+  getUserOrders,
   getOrderById,
+  getOrderProducts,
   getOrderProducts
 };
